@@ -1,0 +1,22 @@
+name: Build and deploy
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Build & Push app
+        if: success()
+        uses: opspresso/action-docker@master
+        with:
+          args: --docker
+        env:
+          USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          PASSWORD: ${{ secrets.DOCKER_HUB_TOKEN }}
+          DOCKERFILE: "Dockerfile"
+          IMAGE_NAME: "hovoh/php-laravel"
+          TAG_NAME: "latest"
