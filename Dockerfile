@@ -1,4 +1,4 @@
-FROM php:7.3.12-fpm-alpine
+FROM php:7.4-fpm-alpine
 MAINTAINER HOVOH version: 0.1
 RUN apk add --no-cache --virtual .build-deps \
         $PHPIZE_DEPS \
@@ -25,7 +25,6 @@ RUN apk add --no-cache --virtual .build-deps \
         bcmath \
         curl \
         iconv \
-        mbstring \
         pdo \
         pdo_mysql \
         pdo_pgsql \
